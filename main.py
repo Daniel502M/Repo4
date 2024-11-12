@@ -6,6 +6,8 @@ import psycopg2
 from database import engine
 from models import Base
 
+from users import users_router
+
 
 Base.metadata.create_all(bind=engine)
 
@@ -34,3 +36,6 @@ app = FastAPI()
 @app.get("/")
 def main():
     return "Home"
+
+
+app.include_router(users_router)
